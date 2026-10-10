@@ -1,0 +1,19 @@
+# 功能点卡片（阶段一产出 → 阶段二消费）
+# 放 {项目根}/.release-docs/features.yaml
+version: 1
+project: ""
+updated: ""
+features:
+  - id: ""          # kebab-case 短名，截图文件名用
+    title: ""
+    purpose: ""     # 一句话用处
+    role: ""        # 面向角色
+    entry: ""       # 入口路由 / 页面名
+    steps:
+      - ""
+    acceptance:     # 来自拷问「验收标准」域
+      - ""
+    screenshot_targets:
+      - { label: 页面名, type: 整页, note: 怎么点开 }   # type: 整页|表格|弹窗|悬浮球
+    status: drafted   # drafted | released
+    released_in: ""

@@ -1,0 +1,19 @@
+# 功能点卡片（全流程共享契约）
+# 需求转译产出 → 发版说明消费。放 {项目根}/.release-docs/features.yaml
+version: 1
+project: ""        # 项目名
+updated: ""        # YYYY-MM-DD
+features:
+  - id: ""          # kebab-case 短名，截图文件名用（如 contract-ai-parse）
+    title: ""       # 功能标题
+    purpose: ""     # 一句话用处（写给使用者）
+    role: ""        # 面向角色
+    entry: ""       # 入口路由 / 页面名
+    steps:          # 操作路径
+      - ""
+    acceptance:     # 验收标准（来自 grill-me 拷问）
+      - ""
+    screenshot_targets:   # 截图目标规划
+      - { label: 页面名, type: 整页, note: 怎么点开 }   # type: 整页|表格|弹窗|悬浮球
+    status: drafted   # drafted | released
+    released_in: ""   # 发版日期，release-notes 回写

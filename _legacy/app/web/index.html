@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>发版文档工具</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">&#128196; 发版文档工具 <span class="sub">更新说明 · 需求转译</span></div>
+  <button id="btn-settings" class="btn ghost">&#9881; 设置</button>
+</header>
+<nav class="tabs">
+  <button class="tab active" data-tab="release">更新说明</button>
+  <button class="tab" data-tab="req">需求转译</button>
+</nav>
+<main>
+  <section id="tab-release" class="tab-body active">
+    <div class="grid2">
+      <div class="card">
+        <h3>1 · 项目与站点</h3>
+        <label>项目档案
+          <select id="project-select"></select>
+        </label>
+        <label>自定义项目目录（留空 = 用档案）
+          <input id="project-root" placeholder="E:\path\to\repo">
+        </label>
+        <label>站点地址（截图用）
+          <input id="site-url" placeholder="http://localhost:5174">
+        </label>
+        <details>
+          <summary>登录信息（截图用）</summary>
+          <label>登录路径 <input id="login-path" value="/login"></label>
+          <label>手机号 <input id="login-phone" placeholder="13800000001"></label>
+          <label>密码 <input id="login-pass" type="password" placeholder="密码"></label>
+          <label>角色（写进文档） <input id="role" placeholder="超管 / 销运"></label>
+        </details>
+      </div>
+      <div class="card">
+        <h3>2 · 功能点</h3>
+        <label>功能点标题（一行一个）
+          <textarea id="features" rows="5" placeholder="合同 AI 解析&#10;账龄筛选"></textarea>
+        </label>
+        <div class="row">
+          <label class="grow">git 范围（最近 N 次，或 from..to）
+            <input id="git-range" value="15">
+          </label>
+          <button id="btn-git" class="btn">从 git 猜候选</button>
+        </div>
+        <div id="candidates" class="candidates hidden"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <h3>3 · 生成</h3>
+        <span class="grow"></span>
+        <button id="btn-analyze" class="btn primary">① 分析并生成正文</button>
+        <button id="btn-shoot" class="btn primary">② 截图</button>
+        <button id="btn-compose" class="btn primary">③ 合成输出</button>
+      </div>
+      <div id="sections" class="sections"></div>
+    </div>
+    <div id="results" class="card hidden"><h3>输出</h3><div id="results-body"></div></div>
+  </section>
+
+  <section id="tab-req" class="tab-body">
+    <div class="grid2">
+      <div class="card">
+        <h3>需求文本（一大坨贴进来）</h3>
+        <textarea id="req-text" rows="14" placeholder="把复杂的业务/需求原文贴在这里…"></textarea>
+        <label>目标项目目录（可选，五件套会写进它的 docs/spec/）
+          <input id="req-root" placeholder="留空则写到工具自身 output/">
+        </label>
+      </div>
+      <div class="card">
+        <h3>拷问清单（解析后出现）</h3>
+        <button id="btn-req-questions" class="btn primary">① 解析 → 出拷问清单</button>
+        <div id="req-questions" class="questions"></div>
+        <button id="btn-req-generate" class="btn primary hidden">② 生成五件套</button>
+      </div>
+    </div>
+    <div id="req-results" class="card hidden"><h3>输出</h3><div id="req-results-body"></div></div>
+  </section>
+
+  <section class="card logcard"><h3>日志</h3><pre id="log"></pre></section>
+</main>
+
+<div id="settings-modal" class="modal hidden">
+  <div class="modal-box">
+    <div class="row"><h3>模型接入设置</h3><button id="btn-settings-close" class="btn ghost">×</button></div>
+    <label>DeepSeek API Key <input id="set-apikey" type="password" placeholder="sk-..."></label>
+    <label>API Base URL <input id="set-baseurl" value="https://api.deepseek.com"></label>
+    <label>重试次数 <input id="set-retries" type="number" value="2"></label>
+    <label>各阶段参数（JSON）
+      <textarea id="set-stages" rows="7"></textarea>
+    </label>
+    <label>项目档案（JSON）
+      <textarea id="set-projects" rows="7"></textarea>
+    </label>
+    <button id="btn-settings-save" class="btn primary">保存</button>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

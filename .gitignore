@@ -1,0 +1,18 @@
+# ── 产物与临时文件 ──
+*.zip
+release-flow.zip
+node_modules/
+__pycache__/
+*.pyc
+
+# ── 运行产物（截图任务生成的中间文件）──
+screenshots/
+.release-docs/tmp/
+
+# ── IDE / 系统 ──
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+*.swp
+*~

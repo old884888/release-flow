@@ -1,0 +1,8 @@
+{
+  "site": { "baseUrl": "http://localhost:5174", "login": { "path": "/login", "phone": "", "password": "" } },
+  "outDir": "{root}/docs/releases/{date}/screenshots",
+  "viewport": "1440x900",
+  "tasks": [
+    { "featureId": "contract-ai-parse", "file": "01-contract-ai-parse.png", "path": "/contracts", "steps": [ { "type": "click", "text": "解析到条款" } ] }
+  ]
+}

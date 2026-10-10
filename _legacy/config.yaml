@@ -1,0 +1,61 @@
+# 发版文档工具 · 全局配置
+# 修改本文件即改参数；运行时可被表单覆盖。
+
+# ---------- 模型接入（DeepSeek 优化默认） ----------
+# v1 说明：预设作用于编排出的子任务；未覆盖部分跟随会话模型设置。
+# 将来工具独立成应用时，同一份配置直接变成 API 接入设置。
+models:
+  provider_default: deepseek-official
+  stages:
+    git-summary:      # git 变更 → 候选功能点（机械归纳）
+      model: deepseek-chat
+      reasoning: low
+      temperature: 0.1
+    route-locate:     # 读代码定位菜单/路由/按钮文案
+      model: deepseek-v4-pro
+      reasoning: high
+      temperature: 0.2
+    feature-write:    # 核心写作：用处 + 操作
+      model: deepseek-v4-pro
+      reasoning: high
+      temperature: 0.3
+    grill:            # 对抗拷问（最贵一档）
+      model: deepseek-v4-pro
+      reasoning: max
+      temperature: 0.2
+    compose:          # 文档拼装/截图报告整合
+      model: deepseek-v4-pro
+      reasoning: medium
+      temperature: 0.2
+
+# ---------- 运行参数 ----------
+runtime:
+  retries: 3                  # 单任务失败重试次数
+  screenshot_timeout_ms: 15000
+  screenshot_viewport: "1440x900"
+  grill_max_questions: 12     # 每批拷问上限
+
+# ---------- 输出落点 ----------
+outputs:
+  releases: "docs/releases/{date}/"
+  spec: "docs/spec/"
+  screenshots: "screenshots/"
+
+# ---------- 模板 ----------
+template:
+  release: templates/release-note.md
+  spec: templates/spec/
+
+# ---------- 项目档案 ----------
+# 每个被服务的项目一条。接入新项目时填充，之后一键复用。
+projects:
+  qikeya-manor-v3:
+    root: E:\Code666\qikeya-manor-V3\qikeya-manor-v3
+    base_url: http://localhost:5174
+    backend_url: http://localhost:3000
+    login:
+      path: /login
+      username_field: 手机号
+      username: ""        # TODO: 待用户提供
+      password: ""        # TODO: 待用户提供
+    role: ""              # TODO: 待用户确认（超管/销运等四角色之一）

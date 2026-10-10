@@ -1,0 +1,47 @@
+{
+  "llm": {
+    "apiKey": "",
+    "baseUrl": "https://api.deepseek.com",
+    "retries": 2,
+    "stages": {
+      "git-summary": {
+        "model": "deepseek-chat",
+        "temperature": 0.1,
+        "maxTokens": 2000
+      },
+      "route-locate": {
+        "model": "deepseek-chat",
+        "temperature": 0.2,
+        "maxTokens": 2000
+      },
+      "feature-write": {
+        "model": "deepseek-chat",
+        "temperature": 0.3,
+        "maxTokens": 4000
+      },
+      "grill": {
+        "model": "deepseek-reasoner",
+        "temperature": 0.2,
+        "maxTokens": 8000
+      },
+      "compose": {
+        "model": "deepseek-chat",
+        "temperature": 0.2,
+        "maxTokens": 4000
+      }
+    }
+  },
+  "projects": {
+    "qikeya-manor-v3": {
+      "root": "E:\\Code666\\qikeya-manor-V3\\qikeya-manor-v3",
+      "baseUrl": "http://localhost:5174",
+      "login": {
+        "path": "/login",
+        "phone": "",
+        "password": ""
+      },
+      "role": ""
+    }
+  },
+  "defaults": {}
+}
